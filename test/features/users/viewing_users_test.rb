@@ -10,7 +10,7 @@ feature 'viewing client list' do
   scenario 'a client cannot view the client list' do
     sign_in(:client)
     visit client_list_path
-    page.must_have_content 'October'
+    page.must_have_content Time.now.month
   end
 end
 

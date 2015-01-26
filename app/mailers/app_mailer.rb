@@ -73,19 +73,19 @@ class AppMailer < ActionMailer::Base
   end
 
   def send_reservation_emails(user, appointment)
-    AppMailer.client_reservation_email(user, appointment).deliver
+    AppMailer.client_reservation_email(user, appointment).deliver_later
     AppMailer.therapist_reservation_email(appointment.therapist, appointment)
-    .deliver
+    .deliver_later
   end
 
   def therapist_cancellation(user, appointment)
-    AppMailer.therapist_cancellation_for_client(appointment).deliver
-    AppMailer.therapist_cancellation_for_therapist(user, appointment).deliver
+    AppMailer.therapist_cancellation_for_client(appointment).deliver_later
+    AppMailer.therapist_cancellation_for_therapist(user, appointment).deliver_later
   end
 
   def client_cancellation(user, appointment)
     AppMailer.client_cancellation_for_therapist(appointment
-      .therapist, appointment).deliver
-    AppMailer.client_cancellation_for_client(user, appointment).deliver
+      .therapist, appointment).deliver_later
+    AppMailer.client_cancellation_for_client(user, appointment).deliver_later
   end
 end

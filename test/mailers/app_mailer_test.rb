@@ -5,7 +5,7 @@ class AppMailerTest < ActionMailer::TestCase
     email = AppMailer.client_reservation_email(
                                             users(:client),
                                             appointments(:reserved_appointment)
-                                            ).deliver
+                                            ).deliver_now
     assert_not ActionMailer::Base.deliveries.empty?
 
     assert_equal ['info@scheduler.com'], email.from
@@ -17,7 +17,7 @@ class AppMailerTest < ActionMailer::TestCase
     email = AppMailer.therapist_reservation_email(
                                             users(:therapist),
                                             appointments(:reserved_appointment)
-                                            ).deliver
+                                            ).deliver_now
     assert_not ActionMailer::Base.deliveries.empty?
 
     assert_equal ['info@scheduler.com'], email.from
@@ -29,7 +29,7 @@ class AppMailerTest < ActionMailer::TestCase
     email = AppMailer.client_cancellation_for_client(
                                             users(:client),
                                             appointments(:reserved_appointment)
-                                            ).deliver
+                                            ).deliver_now
     assert_not ActionMailer::Base.deliveries.empty?
 
     assert_equal ['info@scheduler.com'], email.from
@@ -41,7 +41,7 @@ class AppMailerTest < ActionMailer::TestCase
     email = AppMailer.client_cancellation_for_therapist(
                                             users(:client),
                                             appointments(:reserved_appointment)
-                                            ).deliver
+                                            ).deliver_now
     assert_not ActionMailer::Base.deliveries.empty?
 
     assert_equal ['info@scheduler.com'], email.from
@@ -53,7 +53,7 @@ class AppMailerTest < ActionMailer::TestCase
     email = AppMailer.therapist_cancellation_for_therapist(
                                             users(:therapist),
                                             appointments(:reserved_appointment)
-                                            ).deliver
+                                            ).deliver_now
     assert_not ActionMailer::Base.deliveries.empty?
 
     assert_equal ['info@scheduler.com'], email.from
@@ -64,7 +64,7 @@ class AppMailerTest < ActionMailer::TestCase
   test 'therapist cancelation to client' do
     email = AppMailer.therapist_cancellation_for_client(
                                             appointments(:reserved_appointment)
-                                            ).deliver
+                                            ).deliver_now
     assert_not ActionMailer::Base.deliveries.empty?
 
     assert_equal ['info@scheduler.com'], email.from

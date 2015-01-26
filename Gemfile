@@ -13,12 +13,13 @@ gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
 gem 'postmark-rails'
 gem 'pundit'
-gem 'rails', '4.1.6'
-gem 'sass-rails', '~> 4.0'
+gem 'rails', '4.2.0'
+gem 'sass-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'seed_dump'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
+gem 'unicorn'
 
 group :development do
   gem 'better_errors'
@@ -43,5 +44,4 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
-  gem 'unicorn'
 end
