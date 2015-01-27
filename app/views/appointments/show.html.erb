@@ -1,51 +1,42 @@
-<section class="hero">
-  <%= render 'layouts/nav' %>
-    <div class="hero-text">
-      <h1>Almost there!</h1><br>
-      <h3>Just pick your time and click 'Reserve Appointment'</h3>
-      <h5>
-        Appointments are two hours long. Select a start time from the
-        reservation time dropdown within the available time range.
-      </h5>
-    </div>
-</section>
-
 <p id="notice"><%= notice %></p>
 
 <div class="row">
-  <div class="small-8 columns">
+  <div class="small-10 columns">
     <div class="signup-panel">
-      <p>
-        <strong>Date:</strong> <%= @appointment.date %><br>
-        <strong>Time:</strong> <%= @appointment.start_time.strftime("%l:%M") %> - <%= @appointment.end_time.strftime("%l:%M%p") %><br>
-        <strong>Therapist:</strong> <%= @appointment.therapist.full_name %><br>
-        <% if @user.therapist? %>
-          <strong>Reserved?</strong> <%= @appointment.reserved %><br>
-        <% end %>
-        <% if @user.therapist? && @appointment.client_id != nil %>
-         <strong>Client:</strong> <%= @appointment.client.full_name %>
-        <% end %>
-      </p>
-
+      <p class="welcome">Reserve Appointment</p>
       <p>
         <% if @appointment.reserved? == false %>
           <%= form_for(@appointment) do |f| %>
-          <div class="row collapse">
-            <div class="small-2 columns ">
-              <span class="prefix"><i class="fi-clock"></i></span>
+            <div class="row collapse">
+              <div class="small-2 columns ">
+                <span class="prefix"><i class="fi-clock"></i></span>
+              </div>
+            <div class="small-10 columns">
+              <%= f.text_field :reservation_time, placeholder: "Select Start Time" %>
             </div>
-          <div class="small-10 columns">
-            <%= f.text_field :reservation_time, placeholder: "Reservation Time" %>
-          </div>
-            <%= f.hidden_field :reserved, :value => true %>
-            <%= f.hidden_field :client_id, :value => current_user.id %>
-            <%= f.submit 'Reserve Appointment', class: 'button tiny' %>
+            <!-- appointment info -->
+            <h5>Date: <%= @appointment.date %></h5>
+            <h5>Time: <%= @appointment.start_time.strftime("%l:%M") %> - <%= @appointment.end_time.strftime("%l:%M%p") %></h5>
+            <h5>Therapist: <%= @appointment.therapist.full_name %></h5>
+            <% if @user.therapist? %>
+              <h5>Reserved? <%= @appointment.reserved ? 'Yes' : 'No' %></h5>
+            <% end %>
+            <% if @user.therapist? && @appointment.client_id != nil %>
+             <h5>Client:<%= @appointment.client.full_name %></h5>
+            <% end %>
+            <!-- submit buttons -->
+            <%= f.hidden_field :reserved, value: true %>
+            <%= f.hidden_field :client_id, value: current_user.id %>
+            <%= f.submit 'Reserve Appointment', class: 'button' %>
           <% end %>
         <% else %>
-          <%= button_to 'Cancel Appointment', appointment_path(@appointment, appointment: {reserved: false, client_id: nil, cancelled_id: @appointment.client_id}), method: :patch, data: {confirm: 'Are you sure?'}, class: 'button tiny alert' %>
+          <%= button_to 'Cancel Appointment', appointment_path(@appointment,
+            appointment: {reserved: false, client_id: nil, cancelled_id: @appointment.client_id}),
+            method: :patch, data: {confirm: 'Are you sure?'}, class: 'button tiny alert' %>
         <% end %>
       </p>
 
+      <!-- Links -->
       <% if policy(@appointment).destroy? %>
         <%= link_to 'Delete Appointment', appointment_path(@appointment), method: :delete %>
         |
@@ -60,4 +51,3 @@
     </div>
   </div>
 </div>
-

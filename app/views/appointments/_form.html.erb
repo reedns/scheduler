@@ -1,7 +1,7 @@
 <div class="row">
-  <div class="large-6 columns">
+  <div class="large-10 columns">
     <div class="signup-panel">
-      <p class="welcome">Create Appointment</p>
+      <p class="welcome"><%= @appointment.new_record? ? 'Create Appointment' : 'Edit Appointment' %></p>
       <%= form_for(@appointment) do |f| %>
 
       <% if @appointment.errors.any? %>
@@ -42,6 +42,8 @@
       </div>
       <%= f.submit class: 'button' %>
     <% end %>
+
+    <%= link_to 'Cancel', @appointment.new_record? ? root_path : @appointment %>
   </div>
 </div>
 </div>

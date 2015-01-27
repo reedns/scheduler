@@ -1,15 +1,7 @@
-<section class="hero">
-  <%= render 'layouts/nav' %>
-    <div class="hero-text">
-      <h1>Welcome to Massage Scheduler!</h1><br>
-      <% if user_signed_in? %>
-        <h3>Select an available slot to reserve</h3>
-      <% else%>
-        <h3>Sign in or create an account to get started</h3>
-      <% end %>
-    </div>
+<%= render 'shared/title', h1_msg: 'Welcome to Massage Scheduler',
+  h3_msg: user_signed_in? ? 'Select an available appointment' :
+                             'Sign in or create an account to get started' %>
 
-</section>
 <div id="reservations">
   <h1 id="month">
     <%= link_to "<", date: @date.prev_month %>

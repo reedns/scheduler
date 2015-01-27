@@ -1,12 +1,5 @@
-<section class="hero">
-  <%= render 'layouts/nav' %>
-    <div class="hero-text">
-      <h1>Create your account here!</h1>
-    </div>
-</section>
-
 <div class="row">
-    <div class="large-6 columns">
+    <div class="large-10 columns">
       <div class="signup-panel">
         <p class="welcome"> Sign Up!</p>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -60,6 +53,3 @@
       </div>
     </div>
    </div>
-
-
-

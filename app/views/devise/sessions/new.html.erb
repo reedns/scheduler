@@ -1,13 +1,5 @@
-<section class="hero">
-  <%= render 'layouts/nav' %>
-    <div class="hero-text">
-      <h1>Sign in here for access to amazing stuff!</h1>
-    </div>
-</section>
-
-
 <div class="row">
-  <div class="large-6 columns">
+  <div class="large-10 columns">
     <div class="signup-panel">
       <p class="welcome"> Sign In!</p>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -39,5 +31,3 @@
   </div>
 </div>
 </div>
-
-
