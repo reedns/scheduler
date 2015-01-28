@@ -30,7 +30,7 @@ class AppointmentsController < ApplicationController
     authorize @appointment
 
     if @appointment.save
-      redirect_to @appointment, notice: 'Appointment was successfully created.'
+      redirect_to root_path, notice: 'Appointment was successfully created.'
     else
       render :new
     end
@@ -38,12 +38,23 @@ class AppointmentsController < ApplicationController
 
   # PATCH/PUT /appointments/1
   def update
-    if @appointment.update(appointment_params)
-      AppMailer.send_emails(current_user, @appointment) unless request
-      .referer.include?('/edit')
-      redirect_to @appointment, notice: 'Appointment was successfully updated.'
+    if request.referer.include?('/edit')
+      if @appointment.update(appointment_params)
+        redirect_to @appointment, notice: 'Appointment was successfully updated.'
+      else
+        flash[:error] = 'Please fix the errors below.'
+        render :edit
+      end
     else
-      redirect_to @appointment, notice: 'Reservation time invalid'
+      if @appointment.update(appointment_params)
+        AppMailer.send_emails(current_user, @appointment)
+        redirect_to @appointment, notice: 'Appointment was successfully reserved.'
+      else
+        @user = current_user
+        @appointment.reload
+        flash.now[:notice] = 'Please fix the errors below.'
+        render :show
+      end
     end
   end
 
@@ -51,7 +62,7 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment.destroy
     authorize @appointment
-    redirect_to appointments_url,
+    redirect_to root_path,
                 notice: 'Appointment was successfully deleted.'
   end
 

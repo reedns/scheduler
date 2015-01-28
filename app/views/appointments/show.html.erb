@@ -4,6 +4,18 @@
   <div class="small-10 columns">
     <div class="signup-panel">
       <p class="welcome">Reserve Appointment</p>
+      <!-- error messages -->
+      <% if @appointment.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+          <ul>
+          <% @appointment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <!-- form -->
       <p>
         <% if @appointment.reserved? == false %>
           <%= form_for(@appointment) do |f| %>
@@ -30,6 +42,16 @@
             <%= f.submit 'Reserve Appointment', class: 'button' %>
           <% end %>
         <% else %>
+          <h5>Date: <%= @appointment.date %></h5>
+          <h5>Time: <%= @appointment.start_time.strftime("%l:%M") %> - <%= @appointment.end_time.strftime("%l:%M%p") %></h5>
+          <h5>Therapist: <%= @appointment.therapist.full_name %></h5>
+          <% if @user.therapist? %>
+            <h5>Reserved? <%= @appointment.reserved ? 'Yes' : 'No' %></h5>
+          <% end %>
+          <% if @user.therapist? && @appointment.client_id != nil %>
+           <h5>Client:<%= @appointment.client.full_name %></h5>
+          <% end %>
+
           <%= button_to 'Cancel Appointment', appointment_path(@appointment,
             appointment: {reserved: false, client_id: nil, cancelled_id: @appointment.client_id}),
             method: :patch, data: {confirm: 'Are you sure?'}, class: 'button tiny alert' %>
