@@ -1,0 +1,8 @@
+!!!
+%html
+  %body
+    %p
+      = @user.full_name
+      ,
+    %p
+      This is to notify you that #{@appointment.therapist.full_name} has cancelled their appointment with you on #{@appointment.date} at #{@appointment.reservation_time.strftime("%l:%M%p")}.

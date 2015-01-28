@@ -1,0 +1,21 @@
+%h1 Listing appointments
+%table
+  %thead
+    %tr
+      %th{:colspan => "2"}
+      %th client
+      %th therapist
+  %tbody
+    - @appointments.each do |appointment|
+      %tr
+        %td= link_to appointment.date, appointment
+        %td= appointment.start_time.strftime("%l:%M%p")
+        - if appointment.client_id != nil
+          %td= appointment.client.full_name if appointment.client
+        - else
+          %td
+        %td= appointment.therapist.full_name
+        %td= appointment.reserved
+%br/
+- if policy(@appointments).create?
+  = link_to 'New Appointment', new_appointment_path

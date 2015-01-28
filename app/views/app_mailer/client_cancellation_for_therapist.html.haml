@@ -1,0 +1,8 @@
+!!!
+%html
+  %body
+    %p
+      = @user.full_name
+      ,
+    %p
+      This is to notify you that #{User.find(@appointment.cancelled_id).full_name} has cancelled their appointment with you on #{@appointment.date} at #{@appointment.reservation_time.strftime("%l:%M%p")}.

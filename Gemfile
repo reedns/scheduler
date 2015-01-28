@@ -20,6 +20,7 @@ gem 'seed_dump'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
+gem 'haml-rails'
 
 group :development do
   gem 'better_errors'
@@ -27,6 +28,7 @@ group :development do
   gem 'letter_opener'
   gem 'quiet_assets'
   gem 'spring'
+  gem 'erb2haml'
 end
 
 group :development, :test do

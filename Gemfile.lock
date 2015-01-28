@@ -71,6 +71,8 @@ GEM
       warden (~> 1.2.3)
     docile (1.1.5)
     eefgilm (1.1.2)
+    erb2haml (0.1.5)
+      html2haml
     erubis (2.7.0)
     execjs (2.2.2)
     figaro (1.0.0)
@@ -83,7 +85,20 @@ GEM
       sass (>= 3.2.0, < 3.4)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
+    haml (4.0.6)
+      tilt
+    haml-rails (0.8.0)
+      actionpack (>= 4.0.1)
+      activesupport (>= 4.0.1)
+      haml (>= 3.1, < 5.0)
+      html2haml (>= 1.0.1)
+      railties (>= 4.0.1)
     hike (1.2.3)
+    html2haml (2.0.0)
+      erubis (~> 2.7.0)
+      haml (~> 4.0.0)
+      nokogiri (~> 1.6.0)
+      ruby_parser (~> 3.5)
     i18n (0.7.0)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
@@ -181,6 +196,8 @@ GEM
       json (~> 1.4)
     responders (2.0.2)
       railties (>= 4.2.0.alpha, < 5)
+    ruby_parser (3.6.4)
+      sexp_processor (~> 4.1)
     sass (3.3.14)
     sass-rails (5.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -194,6 +211,7 @@ GEM
     seed_dump (3.2.1)
       activerecord (~> 4)
       activesupport (~> 4)
+    sexp_processor (4.4.5)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -241,9 +259,11 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   eefgilm
+  erb2haml
   figaro
   foundation-icons-sass-rails
   foundation-rails
+  haml-rails
   jquery-rails
   jquery-timepicker-rails
   jquery-turbolinks

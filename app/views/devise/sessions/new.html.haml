@@ -1,0 +1,25 @@
+.row
+  .large-10.columns
+    .signup-panel
+      %p.welcome Sign In!
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        = devise_error_messages!
+        .row.collapse
+          .small-2.columns
+            %span.prefix
+              %i.fi-mail
+          .small-10.columns
+            = f.text_field :login, autofocus: true, placeholder: 'Email or Username'
+        .row.collapse
+          .small-2.columns
+            %span.prefix
+              %i.fi-lock
+          .small-10.columns
+            = f.password_field :password, autocomplete: "off", placeholder: 'Password'
+        - if devise_mapping.rememberable?
+          %div
+            = f.check_box :remember_me
+            = f.label :remember_me
+        = f.submit 'Sign In!', class: 'button'
+      %p
+        Don't have an account? #{link_to 'Sign up here', sign_up_path} &amp;raquo

@@ -1,0 +1,34 @@
+.row
+  .large-10.columns
+    .signup-panel
+      %p.welcome= @appointment.new_record? ? 'Create Appointment' : 'Edit Appointment'
+      = form_for(@appointment) do |f|
+        - if @appointment.errors.any?
+          #error_explanation
+            %h2
+              = pluralize(@appointment.errors.count, "error")
+              prohibited this appointment from being saved:
+            %ul
+              - @appointment.errors.full_messages.each do |message|
+                %li= message
+        .row.collapse
+          .small-2.columns
+            %span.prefix
+              %i.fi-calendar
+          .small-10.columns
+            = f.text_field :date, placeholder: "Date"
+        .row.collapse
+          .small-2.columns
+            %span.prefix
+              %i.fi-clock
+          .small-10.columns
+            = f.text_field :start_time, placeholder: "Start Time"
+        .row.collapse
+          .small-2.columns
+            %span.prefix
+              %i.fi-clock
+          .small-10.columns
+            = f.text_field :end_time, placeholder: "End Time"
+          = f.hidden_field :therapist_id, value: current_user.id
+        = f.submit class: 'button'
+      = link_to 'Cancel', @appointment.new_record? ? root_path : @appointment

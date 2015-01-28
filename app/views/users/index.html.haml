@@ -1,0 +1,16 @@
+%h1 Client List
+%table
+  %thead
+    %tr
+      %th{:colspan => "2"}
+      %th client
+      %th
+  %tbody
+    - @clients.each do |client|
+      %tr
+        %td= client.full_name
+        %td= client.username
+        %td= client.email
+        %td
+          = button_to 'Delete Client Account', client, method: :delete,       |
+            data: { :confirm => 'Are you sure?' }, class: 'button alert tiny' |

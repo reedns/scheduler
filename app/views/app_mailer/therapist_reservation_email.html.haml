@@ -1,0 +1,10 @@
+!!!
+%html
+  %body
+    %p
+      = @user.full_name
+      ,
+    %p
+      = @appointment.client.full_name
+      reserved an appointment with you on #{@appointment.date} at
+      \#{@appointment.reservation_time.strftime("%l:%M%p")}.
