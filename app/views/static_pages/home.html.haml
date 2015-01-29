@@ -12,6 +12,6 @@
         %ul
           - @appointments_by_date[date].each do |appointment|
             - if appointment.reserved? == false
-              %li.appointments= link_to "#{appointment.start_time.strftime("%l:%M")} -#{appointment.end_time.strftime("%l:%M%p")}", appointment
+              %li.appointments= link_to "#{appointment.start_time.strftime("%l:%M")} -#{appointment.end_time.strftime("%l:%M%p")}", edit_appointment_path(appointment)
             - else
-              %li.reserved= link_to "#{appointment.start_time.strftime("%l:%M")} -#{appointment.end_time.strftime("%l:%M%p")}", appointment
+              %li.reserved= link_to "#{appointment.start_time.strftime("%l:%M")} -#{appointment.end_time.strftime("%l:%M%p")}", edit_appointment_path(appointment)

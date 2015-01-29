@@ -14,8 +14,9 @@
           %li.has-dropdown
             = link_to "#{current_user.username}", account_path
             %ul.dropdown
-              %li= link_to 'Create an Appointment', new_appointment_path
+              %li= link_to 'Create an Appointment', new_therapist_appointment_path
               %li= link_to 'Client List', client_list_path
+              %li= link_to 'Appointment List', appointments_path
         - else
           %li= link_to "#{current_user.username}", account_path
       - else

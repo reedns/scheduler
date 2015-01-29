@@ -3,14 +3,14 @@ require 'test_helper'
 feature 'deleting an appointment' do
   scenario 'a therapist deletes an appointment' do
     sign_in(:therapist)
-    visit appointment_path(appointments(:available_appointment))
+    visit edit_appointment_path(appointments(:available_appointment))
     click_link 'Delete Appointment'
     page.must_have_content Time.now.month
   end
 
   scenario 'a therapist cannot delete a reserved appointment' do
     sign_in(:therapist)
-    visit appointment_path(appointments(:reserved_appointment))
+    visit edit_appointment_path(appointments(:reserved_appointment))
     page.wont_have_content 'Delete Appointment'
   end
 

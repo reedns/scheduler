@@ -1,6 +1,6 @@
 require 'test_helper'
 
-describe AppointmentsController do
+describe Therapist::AppointmentsController do
   include Devise::TestHelpers
 
   describe 'DELETE destroy' do

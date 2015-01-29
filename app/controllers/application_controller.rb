@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
 
+  helper_method :require_therapist
+
   include Pundit
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -13,6 +15,13 @@ class ApplicationController < ActionController::Base
   def user_not_authorized
     flash[:error] = 'You are not authorized to perform this action.'
     redirect_to(request.referrer || root_path)
+  end
+
+  def require_therapist
+    unless current_user.therapist?
+      flash[:error] = 'You are not authorized to perform this action.'
+      redirect_to root_path
+    end
   end
 
   protected

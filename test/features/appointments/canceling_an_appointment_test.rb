@@ -3,7 +3,7 @@ require 'test_helper'
 feature 'canceling an appointment' do
   scenario 'a therapist can cancel any appointment' do
     sign_in(:therapist)
-    visit appointment_path(appointments(:reserved_appointment))
+    visit edit_appointment_path(appointments(:reserved_appointment))
     click_button 'Cancel Appointment'
     page.must_have_content 'Reserve Appointment'
   end
