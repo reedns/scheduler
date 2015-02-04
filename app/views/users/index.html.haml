@@ -1,10 +1,11 @@
-%h1 Client List
+= render 'shared/title', h1_msg: 'Client list', h3_msg: nil
 %table
   %thead
     %tr
-      %th{:colspan => "2"}
-      %th client
-      %th
+      %th{width: '150'} Client Name
+      %th{width: '150'} Username
+      %th{width: '150'} Email
+      %th{width: '150'} Delete
   %tbody
     - @clients.each do |client|
       %tr
@@ -13,4 +14,5 @@
         %td= client.email
         %td
           = button_to 'Delete Client Account', client, method: :delete,       |
-            data: { :confirm => 'Are you sure?' }, class: 'button alert tiny' |
+            data: { :confirm => 'Are you sure?' }, class: 'button alert tiny', |
+            id: 'delete-client'
