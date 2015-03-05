@@ -33,5 +33,5 @@
       - else
         %strong Client:
         = appt.client.full_name
-      = button_to 'Cancel Appointment', appointment_path(appt, appointment: {reserved: false, client_id: nil, cancelled_id: appt.client_id}), method: :put, data: {confirm: 'Are you sure?'}
+      = button_to 'Cancel Appointment', appointment_path(appt, appointment: {reserved: false, client_id: nil, cancelled_id: appt.client_id, reservation_time: nil}), method: :put, data: {confirm: 'Are you sure?'}
       %hr/

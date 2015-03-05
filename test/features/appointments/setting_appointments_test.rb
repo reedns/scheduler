@@ -4,7 +4,7 @@ feature 'setting appointments' do
   scenario 'therapist adds an appointment' do
     sign_in(:therapist)
 
-    visit new_appointment_path
+    visit new_therapist_appointment_path
     fill_in 'Date', with: '2019-10-30'
     fill_in 'Start Time', with: '3:00pm'
     fill_in 'End Time', with: '6:00pm'
@@ -14,7 +14,7 @@ feature 'setting appointments' do
 
   scenario 'a client cannnot set an appointment' do
     sign_in(:client)
-    visit new_appointment_path
+    visit new_therapist_appointment_path
     page.must_have_content Time.now.month
   end
 

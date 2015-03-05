@@ -11,10 +11,14 @@ Rails.application.routes.draw do
     get 'sign_up', to: 'devise/registrations#new'
   end
 
-  resources :appointments
+  resources :appointments, only: [:edit, :update, :index]
 
   resources :users, only: [:destroy]
   get '/account', to: 'users#show'
   get '/account/edit', to: 'devise/registrations#edit'
   get '/client_list', to: 'users#index'
+
+  namespace :therapist do
+    resources :appointments, except: [:show, :index]
+  end
 end

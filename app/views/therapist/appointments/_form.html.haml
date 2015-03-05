@@ -2,7 +2,7 @@
   .large-10.columns
     .signup-panel
       %p.welcome= @appointment.new_record? ? 'Create Appointment' : 'Edit Appointment'
-      = form_for(@appointment) do |f|
+      = form_for @appointment, url: path, method: method do |f|
         - if @appointment.errors.any?
           #error_explanation
             %h2
@@ -31,4 +31,4 @@
             = f.text_field :end_time, placeholder: "End Time"
           = f.hidden_field :therapist_id, value: current_user.id
         = f.submit class: 'button'
-      = link_to 'Cancel', @appointment.new_record? ? root_path : @appointment
+      = link_to 'Cancel', @appointment.new_record? ? root_path : edit_appointment_path(@appointment)

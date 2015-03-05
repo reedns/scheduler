@@ -8,14 +8,14 @@ feature 'viewing appointments' do
     page.must_have_content appointments(:available_appointment).date
   end
 
-  scenario 'a therapist can view the show page for all appointments' do
+  scenario 'a therapist can view any appointment' do
     sign_in(:therapist)
-    visit appointment_path(appointments(:reserved_appointment))
+    visit edit_appointment_path(appointments(:reserved_appointment))
 
     page.must_have_content users(:client).full_name
   end
 
-  scenario 'a client can only see available appointments in the appointments' do
+  scenario 'a client can only see available appointments' do
     sign_in(:client)
     visit appointments_path
     page.must_have_content appointments(:available_appointment).date
@@ -24,13 +24,13 @@ feature 'viewing appointments' do
 
   scenario "a client cannot view another client's appointment" do
     sign_in(:client)
-    visit appointment_path(appointments(:new_appointment))
+    visit edit_appointment_path(appointments(:new_appointment))
     page.must_have_content Time.now.month
   end
 
-  scenario 'a client can see an available appointment show page' do
+  scenario 'a client can view an available appointment' do
     sign_in(:client)
-    visit appointment_path(appointments(:available_appointment))
+    visit edit_appointment_path(appointments(:available_appointment))
     page.must_have_content appointments(:available_appointment).date
   end
 end
