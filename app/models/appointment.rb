@@ -22,7 +22,7 @@ class Appointment < ActiveRecord::Base
       errors.add(:start_time, 'must be before the start time')
     end
 
-    if date < Time.now
+    if date <= Date.today
       errors.add(:date, 'must be in the future')
     end
   end

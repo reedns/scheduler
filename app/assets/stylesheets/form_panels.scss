@@ -28,4 +28,8 @@
   .button{
     margin-left: 35%;
   }
+  label.inline, input#user_remember_me{
+    vertical-align: middle;
+    margin-bottom: 0;
+  }
 }

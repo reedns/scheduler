@@ -22,4 +22,4 @@
         %td= appointment.reserved ? 'Yes' : 'No'
 %br/
 - if policy(@appointments).create?
-  = button_to 'New Appointment', new_therapist_appointment_path, class: 'button small'
+  = button_to 'New Appointment', new_therapist_appointment_path, method: :get, class: 'button small'
