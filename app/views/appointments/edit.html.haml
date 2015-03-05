@@ -52,7 +52,7 @@
             %h5
               Client: #{@appointment.client.full_name}
           = button_to 'Cancel Appointment', appointment_path(@appointment,                         |
-            appointment: {reserved: false, client_id: nil, cancelled_id: @appointment.client_id}), |
+            appointment: {reserved: false, client_id: nil, cancelled_id: @appointment.client_id, reservation_time: nil}), |
             method: :patch, data: {confirm: 'Are you sure?'}, class: 'button alert'           |
       / Links
       - if policy(@appointment).destroy?

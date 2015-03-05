@@ -11,7 +11,7 @@
   %tbody
     - @appointments.each do |appointment|
       %tr
-        %td= link_to appointment.date, appointment
+        %td= link_to appointment.date, edit_appointment_path(appointment)
         %td= appointment.date.strftime("%A")
         %td= appointment.start_time.strftime("%l:%M%p")
         - if appointment.client_id

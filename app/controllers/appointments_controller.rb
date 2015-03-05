@@ -18,7 +18,8 @@ class AppointmentsController < ApplicationController
       redirect_to root_path,
       notice: "Appointment was succesfully #{@appointment.reserved ? 'reserved' : 'cancelled' }."
     else
-      flash.now[:notice] = 'Please fix the errors below.'
+      flash.now[:eror] = 'Please fix the errors below.'
+      @appointment.reload
       render :edit
     end
   end
@@ -26,6 +27,6 @@ class AppointmentsController < ApplicationController
   private
 
   def appointment_params
-    params.require(:appointment).permit(:reserved)
+    params.require(:appointment).permit(:reserved, :reservation_time, :client_id, :cancelled_id)
   end
 end
