@@ -29,6 +29,7 @@ group :development do
   gem 'quiet_assets'
   gem 'spring'
   gem 'erb2haml'
+  gem 'thin'
 end
 
 group :development, :test do
