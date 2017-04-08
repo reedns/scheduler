@@ -18,7 +18,7 @@ class AppointmentsController < ApplicationController
       redirect_to root_path,
       notice: "Appointment was succesfully #{@appointment.reserved ? 'reserved' : 'cancelled' }."
     else
-      flash.now[:eror] = 'Please fix the errors below.'
+      flash.now[:error] = 'Please fix the errors below.'
       @appointment.reload
       render :edit
     end

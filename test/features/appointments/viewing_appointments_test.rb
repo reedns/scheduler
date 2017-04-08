@@ -33,4 +33,16 @@ feature 'viewing appointments' do
     visit edit_appointment_path(appointments(:available_appointment))
     page.must_have_content appointments(:available_appointment).date
   end
+
+  scenario 'expired appointments are not viewable in the appointments list' do
+    sign_in(:therapist)
+    visit appointments_path
+    page.wont_have_content appointments(:old_appointment).date
+  end
+
+  scenario 'apppointments display in descending order by date' do
+    sign_in(:therapist)
+    visit appointments_path
+    page.must_have_selector
+  end
 end
