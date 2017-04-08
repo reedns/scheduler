@@ -1,5 +1,5 @@
 .row
-  .large-10.columns
+  .small-8.columns.small-centered
     .signup-panel
       %p.welcome= @appointment.new_record? ? 'Create Appointment' : 'Edit Appointment'
       = form_for @appointment, url: path, method: method do |f|
