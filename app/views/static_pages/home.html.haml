@@ -1,6 +1,4 @@
-= render 'shared/title', h1_msg: 'Welcome to Massage Scheduler', |
-  h3_msg: user_signed_in? ? 'Select an available appointment' :  |
-    'Sign in or create an account to get started'                  |
+= render 'shared/title', h1_msg: 'Massage Scheduler', h3_msg: 'Select an available appointment'
 #reservations
   %h1#month
     = link_to "<", date: @date.prev_month
