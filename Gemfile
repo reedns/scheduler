@@ -30,7 +30,7 @@ group :development do
   gem 'spring'
   gem 'erb2haml'
   gem 'thin'
-  gem 'pry'
+  gem 'pry-rails'
 end
 
 group :development, :test do
