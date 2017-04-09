@@ -10,14 +10,14 @@ reserved_appointment:
 
 
 available_appointment:
-  date: <%= Date.tomorrow.to_s %>
-  start_time: 9:00am
+  date: <%= Time.zone.tomorrow.to_s %>
+  start_time: 11:00am
   end_time: 3:00pm
   reserved: false
   therapist_id: 1
 
 new_appointment:
-  date: <%= Date.tomorrow.to_s %>
+  date: <%= 2.days.from_now.to_s %>
   start_time: 3:00pm
   end_time: 9:00pm
   reserved: true
@@ -26,9 +26,9 @@ new_appointment:
   therapist_id: 1
 
 old_appointment:
-  date: <%= Date.yesterday %>
-  start_time: 3:00pm
-  end_time: 9:00pm
+  date: <%= 3.days.ago.to_s %>
+  start_time: 2:00pm
+  end_time: 8:00pm
   reserved: false
   reservation_time: 6:00pm
   therapist_id: 1
