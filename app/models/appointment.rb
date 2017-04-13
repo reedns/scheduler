@@ -12,6 +12,9 @@ class Appointment < ActiveRecord::Base
     where('appointments.date >= ?', Time.zone.today)
   end
 
+  delegate :full_name, to: :client, prefix: true
+  delegate :full_name, to: :therapist, prefix: true
+
   private
 
   def reservation_valid

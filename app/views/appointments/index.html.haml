@@ -1,25 +1,5 @@
 = render 'shared/title', h1_msg: 'Appointment List', h3_msg: nil
-%table
-  %thead
-    %tr
-      %th{width: '150'} Date
-      %th{width: '150'} Day
-      %th{width: '150'} Time
-      %th{width: '150'} Client
-      %th{width: '150'} Therapist
-      %th{width: '150'} Reserved
-  %tbody
-    - @appointments.each do |appointment|
-      %tr
-        %td= link_to appointment.date, edit_appointment_path(appointment)
-        %td= appointment.date.strftime("%A")
-        %td= appointment.start_time.strftime("%l:%M%p")
-        - if appointment.client_id
-          %td= appointment.client.full_name if appointment.client #TODO: fix voyueristic model
-        - else
-          %td
-        %td= appointment.therapist.full_name
-        %td= appointment.reserved ? 'Yes' : 'No'
+= render 'shared/appointments_table', appointments: @appointments
 %br/
 - if policy(@appointments).create?
   = button_to 'New Appointment', new_therapist_appointment_path, method: :get, class: 'button small'
