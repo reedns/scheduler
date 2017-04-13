@@ -8,6 +8,10 @@ class Appointment < ActiveRecord::Base
   validate :valid_time
   validate :valid_date
 
+  def self.upcoming_appointments
+    where('appointments.date >= ?', Time.zone.today)
+  end
+
   private
 
   def reservation_valid
