@@ -1,2 +1,3 @@
-= render 'shared/title', h1_msg: 'Upcoming Appointments', h3_msg: current_user.full_name
+= render 'shared/title', h1_msg: "Your #{@view_title} Appointments", h3_msg: @user.full_name
+= link_to "View #{@next_view.capitalize} Appointments", user_appointments_path(@user, view: "#{@next_view}_appointments")
 = render 'shared/appointments_table', appointments: @appointments
