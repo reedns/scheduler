@@ -2,7 +2,7 @@ class AppointmentPolicy < ApplicationPolicy
   class Scope < Struct.new(:user, :scope)
     def resolve
       if user && user.therapist?
-        scope.all.where('appointments.date >= ?', Date.today)
+        scope.upcoming
       else
         scope.where(reserved: false)
       end

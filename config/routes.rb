@@ -16,7 +16,10 @@ Rails.application.routes.draw do
 
   resources :appointments, only: [:edit, :update, :index]
 
-  resources :users, only: [:destroy]
+  resources :users, only: [:destroy] do
+    resources :appointments, module: 'users', only: :index
+  end
+
   get '/account', to: 'users#show'
   get '/account/edit', to: 'devise/registrations#edit'
   get '/client_list', to: 'users#index'

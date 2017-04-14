@@ -39,10 +39,4 @@ feature 'viewing appointments' do
     visit appointments_path
     page.wont_have_content appointments(:old_appointment).date
   end
-
-  scenario 'apppointments display in descending order by date' do
-    sign_in(:therapist)
-    visit appointments_path
-    page.must_have_selector
-  end
 end

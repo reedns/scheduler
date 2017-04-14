@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
     role == 'client'
   end
 
+  def appointments
+    therapist? ? therapist_appts : client_appts
+  end
+
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if (login = conditions.delete(:login))
