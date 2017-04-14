@@ -34,6 +34,21 @@ feature 'a user views their appointment list' do
   end
 
 
-  scenario "a client cannot see other client's or therapist's appointments"
-  scenario "a therapist cannot see other therapist's or a client's appointments"
+  scenario "a client cannot see other client's or therapist's appointments" do
+    sign_in(:client)
+    visit user_appointments_path(users(:client2))
+    page.must_have_content 'You are not authorized to perform this action.'
+
+    visit user_appointments_path(users(:therapist))
+    page.must_have_content 'You are not authorized to perform this action.'
+  end
+
+  scenario "a therapist cannot see other therapist's or a client's appointments" do
+    sign_in(:therapist)
+    visit user_appointments_path(users(:client2))
+    page.must_have_content 'You are not authorized to perform this action.'
+
+    visit user_appointments_path(users(:therapist2))
+    page.must_have_content 'You are not authorized to perform this action.'
+  end
 end

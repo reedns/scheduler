@@ -21,3 +21,10 @@ client2:
   email: jime@test.com
   encrypted_password: <%= User.new.send(:password_digest, 'password') %>
   role: client
+  
+therapist2:
+  username: k_vargas
+  full_name: Kendall Vargas
+  email: k_vargas@example.com
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  role: therapist
