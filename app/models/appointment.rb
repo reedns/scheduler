@@ -11,11 +11,11 @@ class Appointment < ActiveRecord::Base
   delegate :full_name, to: :client, prefix: true
   delegate :full_name, to: :therapist, prefix: true
 
-  def self.upcoming_appointments
+  def self.upcoming
     where('appointments.date >= ?', Date.today)
   end
 
-  def self.past_appointments
+  def self.past
     where('appointments.date < ?', Date.today)
   end
 

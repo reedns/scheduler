@@ -1,3 +1,4 @@
 = render 'shared/title', h1_msg: "Your #{@view_title} Appointments", h3_msg: @user.full_name
-= link_to "View #{@next_view.capitalize} Appointments", user_appointments_path(@user, view: "#{@next_view}_appointments")
+.clearfix
+  = link_to "View #{@next_view.capitalize} Appointments", user_appointments_path(@user, view: @next_view), class: 'right'
 = render 'shared/appointments_table', appointments: @appointments
