@@ -6,4 +6,8 @@ class UserPolicy < ApplicationPolicy
   def destroy?
     user.therapist?
   end
+
+  def show?
+    user.id == record.id
+  end
 end
